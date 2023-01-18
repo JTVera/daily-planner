@@ -1,29 +1,33 @@
+// shows current time in hedder
 const currentDay = document.getElementById("currentDay"); 
 
 var now = document.createTextNode(dayjs().format("dddd, MMMM DD")); 
 
 currentDay.appendChild(now) 
 
+// adds CSS class on time
 function addClass(){
 
+// currentTime set to number of hours
 var currentTime = dayjs().hour();
 
+// loops for all time blocks
 $(".time-blocks").each(function ( ){
     
     var hourBlock = parseInt($(this).attr('id'));
-
+// shows past CSS value
     if(hourBlock < currentTime){
         $(this).addClass("past");
         $(this).removeClass("present");
         $(this).removeClass("future");
     }
-
+// show current css value
     else if(hourBlock === currentTime){
         $(this).removeClass("past");
         $(this).addClass("present");
         $(this).removeClass("future");
     }
-
+// show future Css value
     else{
         $(this).removeClass("past");
         $(this).removeClass("present");
@@ -32,6 +36,7 @@ $(".time-blocks").each(function ( ){
 });
 }
 
+//save local storage on btn press
 $(".btn").each(function(index){
 $(this).click(function (e) {
     e.preventDefault();
@@ -44,8 +49,10 @@ $(this).click(function (e) {
 });
 });
 
+// helps style page when loaded
 addClass();
 
+// uses saved local storage for text boxs
 $("#8 .userText").val(localStorage.getItem("8"))
 $("#9 .userText").val(localStorage.getItem("9"))
 $("#10 .userText").val(localStorage.getItem("10"))
